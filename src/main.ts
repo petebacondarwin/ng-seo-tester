@@ -16,8 +16,13 @@ platformBrowserDynamic().bootstrapModule(AppModule)
     const nav = ref.injector.get(Navigation);
     setTimeout(() => {
       const meta = ref.injector.get(Meta);
-      meta.removeTag('name="googlebot"');
-      (window as any).log('noindex removed');
+      if (nav.current.noindex) {
+        meta.addTag({ name: 'googlebot', content: 'noindex' });
+        (window as any).log('noindex added');
+      } else {
+        meta.removeTag('name="googlebot"');
+        (window as any).log('noindex removed');
+      }
     }, nav.current.timeout);
   })
   .catch(err => (window as any).log(err));
