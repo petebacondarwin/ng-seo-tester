@@ -22,6 +22,6 @@ import { Navigation } from './navigation.service';
 })
 export class AppModule {
   constructor() {
-    console.log('AppModule constructor');
+    (window as any).log('AppModule constructor');
   }
 }

@@ -25,6 +25,6 @@ export class Navigation {
   current = this.pages[this.location.path()];
 
   constructor(private location: Location) {
-    console.log('Navigation constructor');
+    (window as any).log('Navigation constructor');
   }
 }

@@ -8,6 +8,6 @@ import { Navigation } from './navigation.service';
 })
 export class AppComponent {
   constructor(public nav: Navigation) {
-    console.log('AppComponent constructor');
+    (window as any).log('AppComponent constructor');
   }
 }

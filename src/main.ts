@@ -12,12 +12,12 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .then(ref => {
-    console.log('Bootstrapped');
+    (window as any).log('Bootstrapped');
     const nav = ref.injector.get(Navigation);
     setTimeout(() => {
       const meta = ref.injector.get(Meta);
       meta.removeTag('name="googlebot"');
-      console.log('noindex removed');
+      (window as any).log('noindex removed');
     }, nav.current.timeout);
   })
-  .catch(err => console.log(err));
+  .catch(err => (window as any).log(err));

@@ -10,7 +10,7 @@
   <meta name="googlebot" content="noindex">
 
   <script>
-    console.log = function() {
+    window.log = function() {
       let msg = document.createElement('pre');
       msg.innerText = (new Date().toISOString()) + ':\n' + Array.prototype.reduce.call(arguments, function(prev, curr) { return prev + '\n' + curr });
       document.getElementById('console-messages').appendChild(msg);
@@ -18,7 +18,7 @@
 
     window.onerror = function (message, url, lineNo, colNo, error) {
 
-      console.log(arguments);
+      window.log(arguments);
 
       let container = document.createElement('div');
 
@@ -42,6 +42,25 @@
 
       document.body.appendChild(container);
     };
+
+    if (!Object.assign) {
+      // polyfill other non-evergreen browsers in a blocking way
+      var polyfillUrl = "https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Array.prototype.find&flags=gated&unknown=polyfill";
+
+      // send a blocking XHR to fetch the polyfill
+      // then append it to the document so that its eval-ed synchronously
+      // this is required because the method used for IE is not reliable with other non-evergreen browsers
+      var xhr = new XMLHttpRequest();
+      xhr.addEventListener("load", function() {
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        var code = this.responseText;
+        s.appendChild(document.createTextNode(code));
+        document.head.appendChild(s);
+      });
+      xhr.open("GET", polyfillUrl, false);
+      xhr.send();
+    }
   </script>
 </head>
 <body>
