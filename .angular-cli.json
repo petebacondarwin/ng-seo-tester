@@ -10,7 +10,8 @@
       "assets": [
         "assets",
         "favicon.ico",
-        "google0ac313a40474d755.html"
+        "google0ac313a40474d755.html",
+        "robots.txt"
       ],
       "index": "index.html",
       "main": "main.ts",
