@@ -14,6 +14,7 @@ platformBrowserDynamic().bootstrapModule(AppModule)
   .then(ref => {
     (window as any).log('Bootstrapped');
     const nav = ref.injector.get(Navigation);
+    (window as any).log(JSON.stringify(nav.current));
     setTimeout(() => {
       const meta = ref.injector.get(Meta);
       if (nav.current.noindex) {

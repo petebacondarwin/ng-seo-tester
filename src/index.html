@@ -10,7 +10,7 @@
 
   <script>
     window.log = function() {
-      let msg = document.createElement('pre');
+      var msg = document.createElement('pre');
       msg.innerText = (new Date().toISOString()) + ':\n' + Array.prototype.reduce.call(arguments, function(prev, curr) { return prev + '\n' + curr });
       document.getElementById('console-messages').appendChild(msg);
     };
@@ -19,7 +19,7 @@
 
       window.log(arguments);
 
-      let container = document.createElement('div');
+      var container = document.createElement('div');
 
       container.style.color = 'red';
       container.style.position = 'fixed';
@@ -28,7 +28,7 @@
       container.style.top = '1em';
       container.style.left = '1em';
 
-      let msg = document.createElement('pre');
+      var msg = document.createElement('pre');
       msg.innerText = [
         'Message: ' + message,
         'URL: ' + url,
